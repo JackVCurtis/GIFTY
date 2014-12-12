@@ -8,9 +8,6 @@ class User < ActiveRecord::Base
   # callbacks
   before_save :encrypt_password
 
-  # relationships
-  has_and_belongs_to_many :products
-
   # validations
   validates_presence_of :password, :on => :create
   validates :user_name,
