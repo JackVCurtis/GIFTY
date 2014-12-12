@@ -4,6 +4,9 @@ require_relative "../db/connection"
 class User < ActiveRecord::Base
   # attributes
   attr_accessor :password
+  belongs_to :group
+  has_many :user_items
+  has_many :items, through: :user_items
 
   # callbacks
   before_save :encrypt_password
