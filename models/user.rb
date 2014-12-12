@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :products
 
   # validations
-  validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates :user_name,
     :presence => true,
@@ -26,9 +25,9 @@ class User < ActiveRecord::Base
   # methods
   def authenticate(password)
     if BCrypt::Password.new(self.password_digest) == password
-      return self
+      return true
     else
-      return nil
+      return false
     end
   end
 
